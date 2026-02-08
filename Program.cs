@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using HomeChefss.Services.Background;
 using HomeChefss.Services.Gateway;
+using Microsoft.AspNetCore.Mvc;
 
 
 
@@ -28,10 +29,32 @@ builder.Services.AddControllers()
 			System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
 	});
 
+
+builder.Services.AddApiVersioning(options =>
+{
+	options.AssumeDefaultVersionWhenUnspecified = true;
+	options.DefaultApiVersion = new ApiVersion(1, 0);
+	options.ReportApiVersions = true;
+});
+
+builder.Services.AddVersionedApiExplorer(options =>
+{
+	options.GroupNameFormat = "'v'VVV"; // v1, v2 etc
+	options.SubstituteApiVersionInUrl = true;
+});
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
+	options.SwaggerDoc("v1", new OpenApiInfo
+	{
+		Title = "HomeChef API",
+		Version = "v1",
+		Description = "Stable API endpoints for frontend integration"
+	});
+
 	options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
 	{
 		Name = "Authorization",
@@ -53,7 +76,7 @@ builder.Services.AddSwaggerGen(options =>
 					Id = "Bearer"
 				}
 			},
-			new string[] {}
+			Array.Empty<string>()
 		}
 	});
 });
@@ -123,8 +146,6 @@ builder.Services.AddScoped<INotificationService, NotificationService>();
 
 
 
-
-
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -164,7 +185,10 @@ using (var scope = app.Services.CreateScope())
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+	{
+		c.SwaggerEndpoint("/swagger/v1/swagger.json", "HomeChef API v1");
+	});
 }
 
 app.UseHttpsRedirection();

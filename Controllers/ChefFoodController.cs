@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HomeChefss.Controllers
 {
-	[Route("api/[controller]")]
+	[Route("api/v1/[controller]")]
 	[Authorize(Roles = "Chef")]
 	[ApiController]
 	public class ChefFoodController : ControllerBase

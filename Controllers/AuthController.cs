@@ -14,7 +14,7 @@ using System.Text;
 
 namespace HomeChefss.Controllers
 {
-	[Route("api/[controller]")]
+	[Route("api/v1/[controller]")]
 	[ApiController]
 	public class AuthController : ControllerBase
 	{

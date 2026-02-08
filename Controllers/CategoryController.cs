@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace HomeChefss.Controllers
 {
 	[ApiController]
-	[Route("api/[controller]")]
+	[Route("api/v1/[controller]")]
 	public class CategoryController : ControllerBase
 	{
 		private readonly ICategoryServices _categoryServices;

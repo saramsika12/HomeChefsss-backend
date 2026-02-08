@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 namespace HomeChefss.Controllers
 {
 	[Authorize(Roles = "Admin")]
-	[Route("api/[controller]")]
+	[Route("api/v1/[controller]")]
 	[ApiController]
 	public class AdminController : ControllerBase
 	{

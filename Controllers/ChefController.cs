@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace HomeChefss.Controllers
 {
 	[Authorize(Roles = "Chef")]
-	[Route("api/[controller]")]
+	[Route("api/v1/[controller]")]
 	[ApiController]
 	public class ChefController : ControllerBase
 	{
