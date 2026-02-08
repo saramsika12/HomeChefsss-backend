@@ -1,0 +1,50 @@
+# =========================
+# ASP.NET Core
+# =========================
+bin/
+obj/
+
+# =========================
+# User-specific files
+# =========================
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# =========================
+# VS / VS Code
+# =========================
+.vs/
+.vscode/
+*.swp
+
+# =========================
+# App settings & secrets
+# =========================
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Local.json
+.env
+
+# =========================
+# Logs
+# =========================
+*.log
+logs/
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# EF Core
+# =========================
+Migrations/*.cs.bak
+
+# =========================
+# Test results
+# =========================
+TestResults/
